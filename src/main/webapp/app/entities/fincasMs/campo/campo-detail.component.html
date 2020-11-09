@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="campo">
+            <h2><span>Campo</span> {{ campo.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nombre</span></dt>
+                <dd>
+                    <span>{{ campo.nombre }}</span>
+                </dd>
+                <dt><span>Sembrado</span></dt>
+                <dd>
+                    <span>{{ campo.sembrado }}</span>
+                </dd>
+                <dt><span>Fecha Plantado</span></dt>
+                <dd>
+                    <span>{{ campo.fechaPlantado }}</span>
+                </dd>
+                <dt><span>Fecha Cosecha</span></dt>
+                <dd>
+                    <span>{{ campo.fechaCosecha }}</span>
+                </dd>
+                <dt><span>Producto</span></dt>
+                <dd>
+                    <span>{{ campo.producto }}</span>
+                </dd>
+                <dt><span>Tamano</span></dt>
+                <dd>
+                    <span>{{ campo.tamano }}</span>
+                </dd>
+                <dt><span>Finca</span></dt>
+                <dd>
+                    <div *ngIf="campo.finca">
+                        <a [routerLink]="['/finca', campo.finca?.id, 'view']">{{ campo.finca?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/campo', campo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-campo-heading">Create or edit a Campo</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="field_nombre"
+                           formControlName="nombre"/>
+                    <div *ngIf="editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombre')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sembrado">Sembrado</label>
+                    <input type="checkbox" class="form-control" name="sembrado" id="field_sembrado"
+                           formControlName="sembrado"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fechaPlantado">Fecha Plantado</label>
+                    <div class="d-flex">
+                        <input id="field_fechaPlantado" type="datetime-local" class="form-control" name="fechaPlantado" formControlName="fechaPlantado" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fechaCosecha">Fecha Cosecha</label>
+                    <div class="d-flex">
+                        <input id="field_fechaCosecha" type="datetime-local" class="form-control" name="fechaCosecha" formControlName="fechaCosecha" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_producto">Producto</label>
+                    <input type="text" class="form-control" name="producto" id="field_producto"
+                           formControlName="producto"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tamano">Tamano</label>
+                    <input type="number" class="form-control" name="tamano" id="field_tamano"
+                           formControlName="tamano"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_finca">Finca</label>
+                    <select class="form-control" id="field_finca" name="finca" formControlName="finca">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="fincaOption.id === editForm.get('finca')!.value?.id ? editForm.get('finca')!.value : fincaOption" *ngFor="let fincaOption of fincas; trackBy: trackById">{{ fincaOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

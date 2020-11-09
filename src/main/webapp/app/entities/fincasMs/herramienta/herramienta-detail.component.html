@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="herramienta">
+            <h2><span>Herramienta</span> {{ herramienta.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nombre</span></dt>
+                <dd>
+                    <span>{{ herramienta.nombre }}</span>
+                </dd>
+                <dt><span>Tipo</span></dt>
+                <dd>
+                    <span>{{ herramienta.tipo }}</span>
+                </dd>
+                <dt><span>Descripcion</span></dt>
+                <dd>
+                    <span>{{ herramienta.descripcion }}</span>
+                </dd>
+                <dt><span>Finca</span></dt>
+                <dd>
+                    <div *ngIf="herramienta.finca">
+                        <a [routerLink]="['/finca', herramienta.finca?.id, 'view']">{{ herramienta.finca?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/herramienta', herramienta.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

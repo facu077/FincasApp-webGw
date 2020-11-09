@@ -52,13 +52,6 @@ node {
 
     def dockerImage
     stage('publish docker') {
-        // A pre-requisite to this step is to setup authentication to the docker registry
-        // https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#authentication-methods
-        sh "./mvnw -ntp jib:build"
-    }
-
-    def dockerImage
-    stage('publish docker') {
         withCredentials(
             [usernamePassword(
                 credentialsId: 'docker-credential',

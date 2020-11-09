@@ -5,7 +5,7 @@
 
     <groupId>ar.edu.um.fincaspp.webgw</groupId>
     <artifactId>web-gateway</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
     <name>Web Gateway</name>
 
@@ -569,7 +569,15 @@
                             <image>adoptopenjdk:11-jre-hotspot</image>
                         </from>
                         <to>
-                            <image>webgateway:latest</image>
+                            <image>facu077/webgateway</image>
+                            <tags>
+                                <tag>${project.version}</tag>
+                                <tag>latest</tag>
+                            </tags>
+                            <auth>
+                                <username>${DOCKER_REGISTRY_USER}</username>
+                                <password>${DOCKER_REGISTRY_PWD}</password>
+                            </auth>
                         </to>
                         <container>
                             <entrypoint>

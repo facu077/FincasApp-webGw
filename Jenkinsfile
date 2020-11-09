@@ -62,8 +62,8 @@ node {
         }
     }
 
-    /*def pomVersion = readMavenPom().version
+    def pomVersion = readMavenPom().version
     stage('Deploy') {
         sh "kubectl set image deployment/webgateway webgateway-app=facu077/webgateway:${pomVersion} --namespace=default"
-    }*/
+    }
 }

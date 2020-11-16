@@ -23,33 +23,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" for="field_userLogin">User Login</label>
-                    <input type="text" class="form-control" name="userLogin" id="field_userLogin"
-                           formControlName="userLogin"/>
-                    <div *ngIf="editForm.get('userLogin')!.invalid && (editForm.get('userLogin')!.dirty || editForm.get('userLogin')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('userLogin')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_ubicacion">Ubicacion</label>
-                    <select class="form-control" id="field_ubicacion" name="ubicacion" formControlName="ubicacion">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="ubicacionOption.id === editForm.get('ubicacion')!.value?.id ? editForm.get('ubicacion')!.value : ubicacionOption" *ngFor="let ubicacionOption of ubicacions; trackBy: trackById">{{ ubicacionOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_encargado">Encargado</label>
-                    <select class="form-control" id="field_encargado" name="encargado" formControlName="encargado">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="encargadoOption.id === editForm.get('encargado')!.value?.id ? editForm.get('encargado')!.value : encargadoOption" *ngFor="let encargadoOption of encargados; trackBy: trackById">{{ encargadoOption.id }}</option>
-                    </select>
-                </div>
             </div>
 
             <div>

@@ -4,6 +4,9 @@ import { Subscription } from 'rxjs';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { FincaService } from 'app/entities/fincasMs/finca/finca.service';
+import { HttpResponse } from '@angular/common/http';
+import { IFinca } from 'app/shared/model/fincasMs/finca.model';
 
 @Component({
   selector: 'jhi-home',
@@ -14,10 +17,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
 
-  constructor(private accountService: AccountService, private loginModalService: LoginModalService) {}
+  fincas: IFinca[] | null = [];
+
+  constructor(private accountService: AccountService, private loginModalService: LoginModalService, private fincaService: FincaService) {}
 
   ngOnInit(): void {
-    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
+    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => {
+      this.account = account;
+      if (this.account) {
+        this.loadCurrentUserFincas();
+      }
+    });
+    if (this.account) {
+      this.loadCurrentUserFincas();
+    }
   }
 
   isAuthenticated(): boolean {
@@ -32,5 +45,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
+  }
+
+  loadCurrentUserFincas(): void {
+    this.fincaService.getCurrentUserFincas().subscribe((res: HttpResponse<IFinca[]>) => {
+      this.fincas = res.body;
+    });
   }
 }

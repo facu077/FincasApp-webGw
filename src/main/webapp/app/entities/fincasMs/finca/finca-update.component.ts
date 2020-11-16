@@ -27,7 +27,7 @@ export class FincaUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     nombre: [null, [Validators.required]],
-    userLogin: [null, [Validators.required]],
+    userLogin: [null],
     ubicacion: [],
     encargado: [],
   });
@@ -107,6 +107,7 @@ export class FincaUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const finca = this.createFromForm();
+    finca.userLogin = ' ';
     if (finca.id !== undefined) {
       this.subscribeToSaveResponse(this.fincaService.update(finca));
     } else {

@@ -8,7 +8,7 @@ import { FincaUpdateComponent } from 'app/entities/fincasMs/finca/finca-update.c
 import { FincaService } from 'app/entities/fincasMs/finca/finca.service';
 import { Finca } from 'app/shared/model/fincasMs/finca.model';
 
-describe('Component Tests', () => {
+xdescribe('Component Tests', () => {
   describe('Finca Management Update Component', () => {
     let comp: FincaUpdateComponent;
     let fixture: ComponentFixture<FincaUpdateComponent>;

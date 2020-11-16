@@ -15,6 +15,10 @@ export class FincaService {
 
   constructor(protected http: HttpClient) {}
 
+  getCurrentUserFincas(): Observable<EntityArrayResponseType> {
+    return this.http.get<IFinca[]>(`${this.resourceUrl}/currentuser`, { observe: 'response' });
+  }
+
   create(finca: IFinca): Observable<EntityResponseType> {
     return this.http.post<IFinca>(this.resourceUrl, finca, { observe: 'response' });
   }
